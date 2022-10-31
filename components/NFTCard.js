@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native'
 
 import { COLORS, SIZES, SHADOWS, assets } from '../constants'
 import { CircleButton, RectangularButton } from './Button'
-import SubInfo from './SubInfo'
+import { SubInfo, EthPrice, NFTTitle, EtherPrice } from './SubInfo'
 
 const NFTCard = ({ data }) => {
 
@@ -24,8 +24,7 @@ const NFTCard = ({ data }) => {
           style={{
             width: '100%',
             height: '100%',
-            borderTopLeftRadius: SIZES.font,
-            borderTopRightRadius: SIZES.font
+            borderRadius: SIZES.font
           }}
         />
 
@@ -34,6 +33,32 @@ const NFTCard = ({ data }) => {
       </View>
 
       <SubInfo />
+
+      <View 
+        style={{ width: '100%', padding: SIZES.font }}
+      >
+        <NFTTitle
+          title={data.name}
+          subTitle={data.creator}
+          titleSize={ SIZES.large }
+          subTitleSize={SIZES.small}
+        />
+
+        <View style={{
+          marginTop: SIZES.font,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+            <EtherPrice price={data.price}/>
+            <RectangularButton 
+              minWidth={120}
+              fontSize={SIZES.font}
+              handlePress={ () => navigation.navigate('Details', { data })}
+            />
+        </View>
+
+      </View>
     </View>
   )
 }
