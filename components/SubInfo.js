@@ -1,5 +1,5 @@
 import { View, Text, Image } from 'react-native'
-import { SIZES, FONTS, COLORS, SHADOWS, assets } from '../constants'
+import { SIZES, FONTS, COLORS, SHADOWS, assets} from '../constants'
 
 export const NFTTitle = ({ title, subTitle, titleSize, subTitleSize }) => {
   return (
@@ -30,7 +30,7 @@ export const EtherPrice = ({ price }) => {
     )
 }
 
-export const EndDate = () => {
+export const EndDate = ( {data} ) => {
     return (
       <View
         style={{
@@ -60,7 +60,7 @@ export const EndDate = () => {
             color: COLORS.primary
         }}
         >
-            12h 30m
+            {`${data.hours}h ${data.minutes}m`}
         </Text>
       </View>
     )
@@ -92,8 +92,9 @@ export const People = () => {
     )
 }
 
-export const SubInfo = () => {
-    return (
+export const SubInfo = ( { data} ) => {
+
+       return (
       <View style={{
         width: '100%',
         paddingHorizontal: SIZES.font,
@@ -102,7 +103,7 @@ export const SubInfo = () => {
         justifyContent: 'space-between'
       }}>
         <People />
-        <EndDate />
+        <EndDate data={data} />
       </View>
     )
 }
